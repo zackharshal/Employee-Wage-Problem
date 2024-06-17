@@ -6,8 +6,7 @@ public class Main {
     public static final int EMP_RATE_PER_HOUR = 20;
     public static final int NUM_OF_WORKING_DAYS = 20;
     public static final int MAX_HRS_IN_MONTH = 100;
-    public static void main(String[] args) {
-        System.out.println("Welcome to Employee Wage Computation problem.");
+    public static void computeEmpWage(){
         int empHrs = 0;
         int totalEmpHours = 0;
         int totalWorkingDays = 0;
@@ -29,6 +28,10 @@ public class Main {
         }
         int totalEmpWage = totalEmpHours * EMP_RATE_PER_HOUR;
         System.out.println("Total Employee wage: " + totalEmpWage);
+    }
+    public static void main(String[] args) {
+        System.out.println("Welcome to Employee Wage Computation problem.");
+        computeEmpWage();
     }
         
 }
