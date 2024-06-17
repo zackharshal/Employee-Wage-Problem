@@ -1,11 +1,22 @@
 public class Main {
     public static final int IS_FULL_TIME = 2;
     public static final int IS_PART_TIME = 1;
-    public static void computeEmpWage(String companyName, int empRatePerHour, int numOfWorkingDays, int maxHourPerMonth){
+    private final String company;
+    private final int empRatePerHour;
+    private final int numOfWorkingDays;
+    private final int maxHoursPerMonth;
+    private int totalEmpWage;
+    public Main(String company, int empRatePerHour, int numOfWorkingDays, int maxHoursPerMonth){
+        this.company = company;
+        this.empRatePerHour = empRatePerHour;
+        this.numOfWorkingDays = numOfWorkingDays;
+        this.maxHoursPerMonth = maxHoursPerMonth;
+    }
+    public void computeEmpWage(){
         int empHrs = 0;
         int totalEmpHours = 0;
         int totalWorkingDays = 0;
-        while (totalEmpHours <= maxHourPerMonth && totalWorkingDays < numOfWorkingDays) {
+        while (totalEmpHours <= maxHoursPerMonth && totalWorkingDays < numOfWorkingDays) {
             totalWorkingDays++;
             int check = (int) ((Math.random() * 10) % 3);
             switch (check) {
@@ -21,13 +32,20 @@ public class Main {
             totalEmpHours += empHrs;
             System.out.println("Day " + totalWorkingDays + " Employee hours : " + empHrs);
         }
-        int totalEmpWage = totalEmpHours * empRatePerHour;
-        System.out.println("Total Employee wage for "+companyName+" company is " + totalEmpWage);
+        totalEmpWage = totalEmpHours * empRatePerHour;
+        System.out.println("Total Employee wage for "+company+" company is " + totalEmpWage);
+    }
+    @Override
+    public String toString(){
+            return "Total employee wage for Company: "+ company + " is: "+ totalEmpWage;
     }
     public static void main(String[] args) {
         System.out.println("Welcome to Employee Wage Computation problem.");
-        computeEmpWage("In&Out",20, 20, 100);
-        computeEmpWage("Adani", 10, 25, 150);
+        Main inAndOut = new Main("IN&OUT", 20, 2, 10);
+        Main adani = new Main("Adani", 10,4,20);
+        inAndOut.computeEmpWage();
+        adani.computeEmpWage();
+        System.out.println(adani);
+        System.out.println(inAndOut);
     }
-        
 }
