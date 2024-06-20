@@ -1,12 +1,14 @@
-public class Main {
+interface EmpWage{
+    public int computeEmpWage(CompanyEmpWage companyEmpWage);
+
+}
+public class Main implements EmpWage {
 
     public static final int IS_FULL_TIME = 2;
     public static final int IS_PART_TIME = 1;
     private int numOfCompany = 0;
     private CompanyEmpWage[] companyEmpWageArray = new CompanyEmpWage[5];
-//    public void EmpWageBuilderArray(){
-//        companyEmpWageArray = new CompanyEmpWage[5];
-//    }
+
     private void addCompanyEmpWage(String company, int empRatePerHour, int numOfWorkingDay, int maxHoursPerMonth){
         companyEmpWageArray[numOfCompany] = new CompanyEmpWage(company, empRatePerHour, numOfWorkingDay,maxHoursPerMonth);
         numOfCompany++;
@@ -17,7 +19,7 @@ public class Main {
             System.out.println(companyEmpWageArray[i]);
         }
     }
-    private int computeEmpWage(CompanyEmpWage companyEmpWage){
+    public int computeEmpWage(CompanyEmpWage companyEmpWage){
         int empHrs = 0, totalEmpHrs = 0, totalWorkingDays = 0;
         while(totalEmpHrs<= companyEmpWage.maxHoursPerMonth && totalWorkingDays < companyEmpWage.numOfWorkingDays){
             totalWorkingDays++;
