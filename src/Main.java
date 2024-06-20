@@ -1,5 +1,7 @@
+import java.util.ArrayList;
+
 interface EmpWage{
-    public int computeEmpWage(CompanyEmpWage companyEmpWage);
+    public int computeEmpWage(CompanyEmpWage companyEmpWages);
 
 }
 public class Main implements EmpWage {
@@ -7,21 +9,21 @@ public class Main implements EmpWage {
     public static final int IS_FULL_TIME = 2;
     public static final int IS_PART_TIME = 1;
     private int numOfCompany = 0;
-    private CompanyEmpWage[] companyEmpWageArray = new CompanyEmpWage[5];
+    private ArrayList<CompanyEmpWage> companyEmpWageArray = new ArrayList<>();
 
     private void addCompanyEmpWage(String company, int empRatePerHour, int numOfWorkingDay, int maxHoursPerMonth){
-        companyEmpWageArray[numOfCompany] = new CompanyEmpWage(company, empRatePerHour, numOfWorkingDay,maxHoursPerMonth);
-        numOfCompany++;
+        companyEmpWageArray.add(new CompanyEmpWage(company, empRatePerHour, numOfWorkingDay, maxHoursPerMonth));
     }
     private void computeEmpWage(){
-        for(int i = 0; i < numOfCompany; i++){
-            companyEmpWageArray[i].setTotalEmpWage(this.computeEmpWage(companyEmpWageArray[i]));
-            System.out.println(companyEmpWageArray[i]);
+        for(CompanyEmpWage companyEmployeeWage: companyEmpWageArray){
+            int totalWage = this.computeEmpWage(companyEmployeeWage);
+            companyEmployeeWage.setTotalEmpWage(totalWage);
+            System.out.println(companyEmployeeWage);
         }
     }
-    public int computeEmpWage(CompanyEmpWage companyEmpWage){
+    public int computeEmpWage(CompanyEmpWage companyEmpWages){
         int empHrs = 0, totalEmpHrs = 0, totalWorkingDays = 0;
-        while(totalEmpHrs<= companyEmpWage.maxHoursPerMonth && totalWorkingDays < companyEmpWage.numOfWorkingDays){
+        while(totalEmpHrs<= companyEmpWages.maxHoursPerMonth && totalWorkingDays < companyEmpWages.numOfWorkingDays){
             totalWorkingDays++;
             int empCheck = (int) Math.floor(Math.random() * 10) %3;
             switch (empCheck){
@@ -32,7 +34,7 @@ public class Main implements EmpWage {
             totalEmpHrs += empHrs;
             System.out.println("Day " + totalWorkingDays + " Employee hours : " + empHrs);
         }
-        return totalEmpHrs * companyEmpWage.empRatePerHour;
+        return totalEmpHrs * companyEmpWages.empRatePerHour;
     }
 
     public static void main(String[] args) {
