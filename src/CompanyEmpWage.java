@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class CompanyEmpWage{
 
     public final String company;
@@ -6,6 +8,7 @@ public class CompanyEmpWage{
 
     public final int maxHoursPerMonth;
     public int totalEmpWage;
+    public ArrayList<Integer> dailyWage = new ArrayList<>();
     public CompanyEmpWage(String company, int empRatePerHour, int numOfWorkingDays, int maxHoursPerMonth){
         this.company = company;
         this.empRatePerHour = empRatePerHour;
