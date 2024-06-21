@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Scanner;
 
 interface EmpWage{
     public int computeEmpWage(CompanyEmpWage companyEmpWages);
@@ -37,11 +38,26 @@ public class Main implements EmpWage {
         }
         return totalEmpHrs * companyEmpWages.empRatePerHour;
     }
+    public void companyWage(){
+        System.out.println("\nEnter the company name for which you have to check the company wage: ");
+        Scanner scanner = new Scanner(System.in);
+        String cName = scanner.next();
+        int sal = 0;
+        for (CompanyEmpWage companyEmployeeWage: companyEmpWageArray) {
+            if(companyEmployeeWage.company.equals(cName)){
+                sal += companyEmployeeWage.totalEmpWage;
+            }
+        }
+        System.out.printf("The total company wage for %s company is %d",cName,sal);
+    }
 
     public static void main(String[] args) {
         Main empWageBuilder = new Main();
         empWageBuilder.addCompanyEmpWage("IN&OUT", 20, 2, 10);
+        empWageBuilder.addCompanyEmpWage("IN&OUT", 20, 2, 10);
         empWageBuilder.addCompanyEmpWage("Adani", 10,4,20);
+        empWageBuilder.addCompanyEmpWage("IN&OUT", 20, 2, 10);
         empWageBuilder.computeEmpWage();
+        empWageBuilder.companyWage();
     }
 }
