@@ -31,8 +31,9 @@ public class Main implements EmpWage {
                 case IS_FULL_TIME -> empHrs = 8;
                 default -> empHrs = 0;
             }
+            companyEmpWages.dailyWage.add(empHrs * companyEmpWages.empRatePerHour);
             totalEmpHrs += empHrs;
-            System.out.println("Day " + totalWorkingDays + " Employee hours : " + empHrs);
+            System.out.println("Day " + totalWorkingDays + " Employee hours : " + empHrs +"\t Employee Wage that day: "+ companyEmpWages.dailyWage.get(totalWorkingDays-1));
         }
         return totalEmpHrs * companyEmpWages.empRatePerHour;
     }
